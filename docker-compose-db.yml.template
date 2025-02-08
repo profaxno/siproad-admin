@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb:10.11
+    container_name: siproad-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+  # app:
+  #   depends_on:
+  #     - db
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   image: siproad-admin-img
+  #   container_name: siproad-admin-app
+  #   restart: always
+  #   ports:
+  #     - "${PORT}:${PORT}"
+  #   # working_dir: /var/www/pokedex
+  #   environment:
+  #     PORT: ${PORT}
+  #     HTTP_TIMEOUT: ${HTTP_TIMEOUT}
+  #     HTTP_MAX_REDIRECTS: ${HTTP_MAX_REDIRECTS}
+  #     EXECUTION_RETRIES: ${EXECUTION_RETRIES}
+  #     EXECUTION_BASE_DELAY: ${EXECUTION_BASE_DELAY}
+  #     DB_HOST: ${DB_HOST}
+  #     DB_PORT: ${DB_PORT}
+  #     DB_NAME: ${DB_NAME}
+  #     DB_USERNAME: ${DB_USERNAME}
+  #     DB_PASSWORD: ${DB_PASSWORD}
+  #     DB_DEFAULT_LIMIT: 1000
+  #   # volumes:
+  #   #   - ./:/var/www/pokedex
