@@ -11,7 +11,7 @@ services:
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "${DB_PORT}:${DB_PORT}"
+      - "${DOCKER_DB_PORT}:3306"
     volumes:
       - ./${DOCKER_DB_VOLUMEN}:/var/lib/mysql
   siproad-admin-api:
